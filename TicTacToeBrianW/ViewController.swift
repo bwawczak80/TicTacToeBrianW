@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -58,8 +58,6 @@ class ViewController: UIViewController {
         btn_3_3.isEnabled = false
     }
     
-    
-    
     var lbl_1_1 = 1
     var lbl_1_2 = 2
     var lbl_1_3 = 3
@@ -74,7 +72,7 @@ class ViewController: UIViewController {
     var draw = 0
     lazy var labelArray = [lbl_1_1, lbl_1_2, lbl_1_3, lbl_2_1, lbl_2_2, lbl_2_3, lbl_3_1, lbl_3_2, lbl_3_3]
     
-
+    
     @IBOutlet weak var btn_1_1: UIButton!
     @IBOutlet weak var btn_1_2: UIButton!
     @IBOutlet weak var btn_1_3: UIButton!
@@ -103,8 +101,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var draws: UILabel!
     
     
-    
-    
     @IBAction func btn_1_1(_ sender: Any) {
         label_1_1.text = "X"
         
@@ -118,8 +114,6 @@ class ViewController: UIViewController {
             delay(2) {
                 self.computersTurn()}
         }
-        
-        
     }
     
     @IBAction func btn_1_2(_ sender: Any) {
@@ -165,7 +159,7 @@ class ViewController: UIViewController {
                 self.computersTurn()}
         }
         
-       
+        
     }
     
     @IBAction func btn_2_2(_ sender: Any) {
@@ -258,7 +252,7 @@ class ViewController: UIViewController {
             self.label_3_3.text = "X"
             
         }
-    
+        
         delay(3){
             self.reset()
             self.readyPlayerOne.text = "Begin"
@@ -316,17 +310,17 @@ class ViewController: UIViewController {
             label_1_3.text == "X" && label_2_3.text == "X" && label_3_3.text == "X" ||
             label_1_1.text == "X" && label_2_2.text == "X" && label_3_3.text == "X" ||
             label_1_3.text == "X" && label_2_2.text == "X" && label_3_1.text == "X"
-            {
+        {
             x = 1
         }else if
-        label_1_1.text == "O" && label_1_2.text == "O" && label_1_3.text == "O" ||
-        label_2_1.text == "O" && label_2_2.text == "O" && label_2_3.text == "O" ||
-        label_3_1.text == "O" && label_3_2.text == "O" && label_3_3.text == "O" ||
-        label_1_1.text == "O" && label_2_1.text == "O" && label_3_1.text == "O" ||
-        label_1_2.text == "O" && label_2_2.text == "O" && label_3_2.text == "O" ||
-        label_1_3.text == "O" && label_2_3.text == "O" && label_3_3.text == "O" ||
-        label_1_1.text == "O" && label_2_2.text == "O" && label_3_3.text == "O" ||
-        label_1_3.text == "O" && label_2_2.text == "O" && label_3_1.text == "O"
+            label_1_1.text == "O" && label_1_2.text == "O" && label_1_3.text == "O" ||
+                label_2_1.text == "O" && label_2_2.text == "O" && label_2_3.text == "O" ||
+                label_3_1.text == "O" && label_3_2.text == "O" && label_3_3.text == "O" ||
+                label_1_1.text == "O" && label_2_1.text == "O" && label_3_1.text == "O" ||
+                label_1_2.text == "O" && label_2_2.text == "O" && label_3_2.text == "O" ||
+                label_1_3.text == "O" && label_2_3.text == "O" && label_3_3.text == "O" ||
+                label_1_1.text == "O" && label_2_2.text == "O" && label_3_3.text == "O" ||
+                label_1_3.text == "O" && label_2_2.text == "O" && label_3_1.text == "O"
         {
             x = 2
         }
@@ -338,12 +332,12 @@ class ViewController: UIViewController {
         win += 1
         
         let alert = UIAlertController(title: "Tic Tac Toe! You win!", message: "Would you like to play again?", preferredStyle: .alert)
-
+        
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             self.reset()
         }))
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-
+        
         self.present(alert, animated: true)
     }
     
@@ -359,105 +353,105 @@ class ViewController: UIViewController {
         self.present(alert, animated: true)
         
     }
-
+    
     func computersTurn() {
         if labelArray.count > 0{
-        let computerChoice = labelArray.randomElement()
-        
-        switch computerChoice {
-        case 1:
-            label_1_1.text = "O"
-            btn_1_1.isEnabled = false
-            labelArray.removeAll(where: { $0 == lbl_1_1 } )
-            if checkForTicTacToe() == 1{
-                youWin()
-            }else if checkForTicTacToe() == 2 {
-                youLose()
-            }
-        case 2:
-            label_1_2.text = "O"
-            btn_1_2.isEnabled = false
-            labelArray.removeAll(where: { $0 == lbl_1_2 } )
-            if checkForTicTacToe() == 1{
-                youWin()
-            }else if checkForTicTacToe() == 2 {
-                youLose()
-            }
-        case 3:
-            label_1_3.text = "O"
-            btn_1_3.isEnabled = false
-            labelArray.removeAll(where: { $0 == lbl_1_3 } )
-            if checkForTicTacToe() == 1{
-                youWin()
-            }else if checkForTicTacToe() == 2 {
-                youLose()
-            }
-        case 4:
-            label_2_1.text = "O"
-            btn_2_1.isEnabled = false
-            labelArray.removeAll(where: { $0 == lbl_2_1 } )
-            if checkForTicTacToe() == 1{
-                youWin()
-            }else if checkForTicTacToe() == 2 {
-                youLose()
-            }
-        case 5:
-            label_2_2.text = "O"
-            btn_2_2.isEnabled = false
-            labelArray.removeAll(where: { $0 == lbl_2_2 } )
-            if checkForTicTacToe() == 1{
-                youWin()
-            }else if checkForTicTacToe() == 2 {
-                youLose()
-            }
-        case 6:
-            label_2_3.text = "O"
-            btn_2_3.isEnabled = false
-            labelArray.removeAll(where: { $0 == lbl_2_3 } )
-            if checkForTicTacToe() == 1{
-                youWin()
-            }else if checkForTicTacToe() == 2 {
-                youLose()
-            }
-        case 7:
-            label_3_1.text = "O"
-            btn_3_1.isEnabled = false
-            labelArray.removeAll(where: { $0 == lbl_3_1 } )
-            if checkForTicTacToe() == 1{
-                youWin()
-            }else if checkForTicTacToe() == 2 {
-                youLose()
-            }
-        case 8:
-            label_3_2.text = "O"
-            btn_3_2.isEnabled = false
-            labelArray.removeAll(where: { $0 == lbl_3_2 } )
-            if checkForTicTacToe() == 1{
-                youWin()
-            }else if checkForTicTacToe() == 2 {
-                youLose()
-            }
-        case 9:
-            label_3_3.text = "O"
-            btn_3_3.isEnabled = false
-            labelArray.removeAll(where: { $0 == lbl_3_3 } )
-            if checkForTicTacToe() == 1{
-                youWin()
-            }else if checkForTicTacToe() == 2 {
-                youLose()
-            }
-        
-        default:
-            let alert = UIAlertController(title: "Error!", message: "Would you like to play again?", preferredStyle: .alert)
+            let computerChoice = labelArray.randomElement()
             
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-                self.reset()
-            }))
-            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-            
-            self.present(alert, animated: true)
-            
-            
+            switch computerChoice {
+            case 1:
+                label_1_1.text = "O"
+                btn_1_1.isEnabled = false
+                labelArray.removeAll(where: { $0 == lbl_1_1 } )
+                if checkForTicTacToe() == 1{
+                    youWin()
+                }else if checkForTicTacToe() == 2 {
+                    youLose()
+                }
+            case 2:
+                label_1_2.text = "O"
+                btn_1_2.isEnabled = false
+                labelArray.removeAll(where: { $0 == lbl_1_2 } )
+                if checkForTicTacToe() == 1{
+                    youWin()
+                }else if checkForTicTacToe() == 2 {
+                    youLose()
+                }
+            case 3:
+                label_1_3.text = "O"
+                btn_1_3.isEnabled = false
+                labelArray.removeAll(where: { $0 == lbl_1_3 } )
+                if checkForTicTacToe() == 1{
+                    youWin()
+                }else if checkForTicTacToe() == 2 {
+                    youLose()
+                }
+            case 4:
+                label_2_1.text = "O"
+                btn_2_1.isEnabled = false
+                labelArray.removeAll(where: { $0 == lbl_2_1 } )
+                if checkForTicTacToe() == 1{
+                    youWin()
+                }else if checkForTicTacToe() == 2 {
+                    youLose()
+                }
+            case 5:
+                label_2_2.text = "O"
+                btn_2_2.isEnabled = false
+                labelArray.removeAll(where: { $0 == lbl_2_2 } )
+                if checkForTicTacToe() == 1{
+                    youWin()
+                }else if checkForTicTacToe() == 2 {
+                    youLose()
+                }
+            case 6:
+                label_2_3.text = "O"
+                btn_2_3.isEnabled = false
+                labelArray.removeAll(where: { $0 == lbl_2_3 } )
+                if checkForTicTacToe() == 1{
+                    youWin()
+                }else if checkForTicTacToe() == 2 {
+                    youLose()
+                }
+            case 7:
+                label_3_1.text = "O"
+                btn_3_1.isEnabled = false
+                labelArray.removeAll(where: { $0 == lbl_3_1 } )
+                if checkForTicTacToe() == 1{
+                    youWin()
+                }else if checkForTicTacToe() == 2 {
+                    youLose()
+                }
+            case 8:
+                label_3_2.text = "O"
+                btn_3_2.isEnabled = false
+                labelArray.removeAll(where: { $0 == lbl_3_2 } )
+                if checkForTicTacToe() == 1{
+                    youWin()
+                }else if checkForTicTacToe() == 2 {
+                    youLose()
+                }
+            case 9:
+                label_3_3.text = "O"
+                btn_3_3.isEnabled = false
+                labelArray.removeAll(where: { $0 == lbl_3_3 } )
+                if checkForTicTacToe() == 1{
+                    youWin()
+                }else if checkForTicTacToe() == 2 {
+                    youLose()
+                }
+                
+            default:
+                let alert = UIAlertController(title: "Error!", message: "Would you like to play again?", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+                    self.reset()
+                }))
+                alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+                
+                self.present(alert, animated: true)
+                
+                
             }
         }else{
             draw += 1
@@ -479,6 +473,6 @@ class ViewController: UIViewController {
             completion()
         }
     }
-
+    
     
 }
