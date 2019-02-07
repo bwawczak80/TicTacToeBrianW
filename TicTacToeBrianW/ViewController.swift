@@ -14,8 +14,51 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        reset()
+        
+        wins.text = "Wins: "
+        losses.text = "Losses: "
+        draws.text = "Draws: "
+        readyPlayerOne.text = ""
+        
+        label_1_1.layer.borderColor = UIColor(red: 0.3882, green: 0.4471, blue: 0.5686, alpha: 1.0).cgColor
+        label_1_1.layer.borderWidth = 1.0
+        
+        label_1_2.layer.borderColor = UIColor(red: 0.3882, green: 0.4471, blue: 0.5686, alpha: 1.0).cgColor
+        label_1_2.layer.borderWidth = 1.0
+        
+        label_1_3.layer.borderColor = UIColor(red: 0.3882, green: 0.4471, blue: 0.5686, alpha: 1.0).cgColor
+        label_1_3.layer.borderWidth = 1.0
+        
+        label_2_1.layer.borderColor = UIColor(red: 0.3882, green: 0.4471, blue: 0.5686, alpha: 1.0).cgColor
+        label_2_1.layer.borderWidth = 1.0
+        
+        label_2_2.layer.borderColor = UIColor(red: 0.3882, green: 0.4471, blue: 0.5686, alpha: 1.0).cgColor
+        label_2_2.layer.borderWidth = 1.0
+        
+        label_2_3.layer.borderColor = UIColor(red: 0.3882, green: 0.4471, blue: 0.5686, alpha: 1.0).cgColor
+        label_2_3.layer.borderWidth = 1.0
+        
+        label_3_1.layer.borderColor = UIColor(red: 0.3882, green: 0.4471, blue: 0.5686, alpha: 1.0).cgColor
+        label_3_1.layer.borderWidth = 1.0
+        
+        label_3_2.layer.borderColor = UIColor(red: 0.3882, green: 0.4471, blue: 0.5686, alpha: 1.0).cgColor
+        label_3_2.layer.borderWidth = 1.0
+        
+        label_3_3.layer.borderColor = UIColor(red: 0.3882, green: 0.4471, blue: 0.5686, alpha: 1.0).cgColor
+        label_3_3.layer.borderWidth = 1.0
+        
+        btn_1_1.isEnabled = false
+        btn_1_2.isEnabled = false
+        btn_1_3.isEnabled = false
+        btn_2_1.isEnabled = false
+        btn_2_2.isEnabled = false
+        btn_2_3.isEnabled = false
+        btn_3_1.isEnabled = false
+        btn_3_2.isEnabled = false
+        btn_3_3.isEnabled = false
     }
+    
+    
     
     var lbl_1_1 = 1
     var lbl_1_2 = 2
@@ -28,7 +71,9 @@ class ViewController: UIViewController {
     var lbl_3_3 = 9
     var win = 0
     var lose = 0
+    var draw = 0
     lazy var labelArray = [lbl_1_1, lbl_1_2, lbl_1_3, lbl_2_1, lbl_2_2, lbl_2_3, lbl_3_1, lbl_3_2, lbl_3_3]
+    
 
     @IBOutlet weak var btn_1_1: UIButton!
     @IBOutlet weak var btn_1_2: UIButton!
@@ -39,6 +84,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var btn_3_1: UIButton!
     @IBOutlet weak var btn_3_2: UIButton!
     @IBOutlet weak var btn_3_3: UIButton!
+    @IBOutlet weak var start: UIButton!
     
     @IBOutlet weak var label_1_1: UILabel!
     @IBOutlet weak var label_1_2: UILabel!
@@ -54,6 +100,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var readyPlayerOne: UILabel!
     @IBOutlet weak var wins: UILabel!
     @IBOutlet weak var losses: UILabel!
+    @IBOutlet weak var draws: UILabel!
+    
+    
     
     
     @IBAction func btn_1_1(_ sender: Any) {
@@ -194,6 +243,42 @@ class ViewController: UIViewController {
         
     }
     
+    
+    @IBAction func start(_ sender: Any) {
+        
+        delay(2){
+            self.label_1_1.text = "X"
+            self.label_1_2.text = "O"
+            self.label_1_3.text = "X"
+            self.label_2_1.text = "O"
+            self.label_2_2.text = "X"
+            self.label_2_3.text = "O"
+            self.label_3_1.text = "X"
+            self.label_3_2.text = "O"
+            self.label_3_3.text = "X"
+            
+        }
+    
+        delay(3){
+            self.reset()
+            self.readyPlayerOne.text = "Begin"
+        }
+        
+        btn_1_1.isEnabled = true
+        btn_1_2.isEnabled = true
+        btn_1_3.isEnabled = true
+        btn_2_1.isEnabled = true
+        btn_2_2.isEnabled = true
+        btn_2_3.isEnabled = true
+        btn_3_1.isEnabled = true
+        btn_3_2.isEnabled = true
+        btn_3_3.isEnabled = true
+        
+        
+    }
+    
+    
+    
     func reset() {
         label_1_1.text = " "
         label_1_2.text = " "
@@ -216,6 +301,9 @@ class ViewController: UIViewController {
         btn_3_3.isEnabled = true
         
         labelArray = [lbl_1_1, lbl_1_2, lbl_1_3, lbl_2_1, lbl_2_2, lbl_2_3, lbl_3_1, lbl_3_2, lbl_3_3]
+        wins.text = "Wins: \(win)"
+        losses.text = "Losses: \(lose)"
+        draws.text = "Draws: \(draw)"
     }
     
     func checkForTicTacToe() -> Int{
@@ -247,6 +335,8 @@ class ViewController: UIViewController {
     
     func youWin() {
         
+        win += 1
+        
         let alert = UIAlertController(title: "Tic Tac Toe! You win!", message: "Would you like to play again?", preferredStyle: .alert)
 
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
@@ -258,6 +348,7 @@ class ViewController: UIViewController {
     }
     
     func youLose() {
+        lose += 1
         let alert = UIAlertController(title: "Tic Tac Toe! You lose!", message: "Would you like to play again?", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
@@ -369,10 +460,12 @@ class ViewController: UIViewController {
             
             }
         }else{
+            draw += 1
             let alert = UIAlertController(title: "Cat's scratch!", message: "Would you like to play again?", preferredStyle: .alert)
             
             alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
                 self.reset()
+                
             }))
             alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
             
@@ -386,6 +479,6 @@ class ViewController: UIViewController {
             completion()
         }
     }
-    
+
     
 }
